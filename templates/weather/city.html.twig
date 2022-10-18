@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}Weather in {{ location.city }}, {{ location.coutry }}{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 1000px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <div class="example-wrapper">
+        <h1>{{ location.city }}, {{ location.coutry }}</h1>
+        <table>
+        <tr>
+            <th>Date</th>
+            <th>Day temp.</th>
+            <th>Night temp.</th>
+            <th>Humidity</th>
+        </tr>
+            {% for weather in measurements %}
+                <tr>
+                    <td>{{ weather.date|date('d.m.Y') }}</td>
+                    <td>{{ weather.degreesDay }}&deg;C</td>
+                    <td>{{ weather.degreesNight }}&deg;C</td>
+                    <td>{{ weather.humidity }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
