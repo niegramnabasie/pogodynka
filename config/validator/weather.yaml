@@ -1,0 +1,25 @@
+App\Entity\Weather:
+  properties:
+    degrees_day:
+      - NotBlank:
+          groups: ['new', 'edit']
+      - Range:
+          min: -100
+          max: 100
+          groups: [ 'new', 'edit']
+    degrees_night:
+      - NotBlank:
+          groups: ['new', 'edit']
+      - Range:
+          min: -100
+          max: 100
+          groups: [ 'new', 'edit']
+    humidity:
+      - NotBlank:
+          groups: ['new', 'edit']
+      - Range:
+          min: 0
+          max: 100
+          groups: [ 'new', 'edit']
+
+

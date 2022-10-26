@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\LocationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,10 +13,10 @@ class WeatherController extends AbstractController
 {
     public function cityAction(Location $city, WeatherRepository $weatherRepository): Response
     {
-        $weather = $weatherRepository->findByLocation($city);
+        $measurements = $weatherRepository->findByLocation($city);
         return $this->render('weather/city.html.twig', [
             'location' => $city,
-            'measurements' => $weather,
+            'measurements' => $measurements,
         ]);
     }
 }

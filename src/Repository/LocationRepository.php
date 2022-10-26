@@ -21,6 +21,17 @@ class LocationRepository extends ServiceEntityRepository
         parent::__construct($registry, Location::class);
     }
 
+    public function findByCityName(string $cityName)
+    {
+        $qb = $this->createQueryBuilder('m');
+        $qb->where('m.city = :location')
+            ->setParameter('location', $cityName);
+
+        $query = $qb->getQuery();
+        $result = $query->getResult();
+        return $result;
+    }
+
     public function save(Location $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -38,6 +49,7 @@ class LocationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
 
 //    /**
 //     * @return Location[] Returns an array of Location objects
