@@ -4,3 +4,7 @@ weather_in_city:
   requirements:
     city: \d+
 
+app_logout:
+  path: /logout
+  methods: GET
+

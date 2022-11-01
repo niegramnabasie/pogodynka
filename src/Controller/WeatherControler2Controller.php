@@ -9,8 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/weather/controler2')]
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
 class WeatherControler2Controller extends AbstractController
 {
     #[Route('/', name: 'app_weather_controler2_index', methods: ['GET'])]

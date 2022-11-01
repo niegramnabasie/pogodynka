@@ -36,6 +36,19 @@
                     <td>{{ weather.humidity }}</td>
                 </tr>
             {% endfor %}
-        </table>
+        </table><br>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_weather_controler2_index') }}">Weather measurements</a>
+            <a href="{{ path('app_location_index') }}">Location</a>
+        {% endif %}
+
+        {% if app.user %}
+            <br><p>Zalogowany jako: {{ app.user.email }}</p>
+            <a href="{{ path('app_logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Sign in</a>
+        {% endif %}
     </div>
+
 {% endblock %}

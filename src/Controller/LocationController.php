@@ -9,11 +9,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 #[Route('/location')]
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
+
 class LocationController extends AbstractController
 {
     #[Route('/', name: 'app_location_index', methods: ['GET'])]
+
     public function index(LocationRepository $locationRepository): Response
     {
         return $this->render('location/index.html.twig', [
