@@ -4,6 +4,10 @@ weather_in_city:
   requirements:
     city: \d+
 
+weather_country_city:
+  path: /weather/{country}/{city}
+  controller: App\Controller\WeatherController:countryCityAction
+
 app_logout:
   path: /logout
   methods: GET

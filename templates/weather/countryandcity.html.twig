@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title %}Weather in {{ nameCity }}, {{ country }}{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 1000px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <div class="example-wrapper">
+        <h1>{{ nameCity }}, {{ country }}</h1>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Day temp.</th>
+                <th>Night temp.</th>
+                <th>Humidity</th>
+            </tr>
+            {% for weather in measurements %}
+                <tr>
+                    <td>{{ weather.date|date('d.m.Y') }}</td>
+                    <td>{{ weather.degreesDay }}&deg;C</td>
+                    <td>{{ weather.degreesNight }}&deg;C</td>
+                    <td>{{ weather.humidity }}</td>
+                </tr>
+            {% endfor %}
+        </table><br>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_weather_controler2_index') }}">Weather measurements</a>
+            <a href="{{ path('app_location_index') }}">Location</a>
+        {% endif %}
+
+        {% if app.user %}
+            <br><p>Zalogowany jako: {{ app.user.email }}</p>
+            <a href="{{ path('app_logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Sign in</a>
+        {% endif %}
+    </div>
+
+{% endblock %}
